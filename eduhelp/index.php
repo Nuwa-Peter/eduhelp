@@ -1,6 +1,26 @@
 <?php
 session_start();
 
+// Default theme
+$default_theme = 'auto';
+
+// Check if theme is set in session, otherwise use default
+if (!isset($_SESSION['theme'])) {
+    $_SESSION['theme'] = $default_theme;
+}
+
+// Handle theme change request
+if (isset($_POST['theme'])) {
+    $theme = $_POST['theme'];
+    if (in_array($theme, ['light', 'dark', 'auto'])) {
+        $_SESSION['theme'] = $theme;
+    }
+}
+
+// Determine the theme to apply
+$theme = $_SESSION['theme'];
+$theme_class = $theme === 'auto' ? '' : $theme;
+
 // include the config file
 require_once 'config.php';
 

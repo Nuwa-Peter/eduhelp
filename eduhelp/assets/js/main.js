@@ -1,21 +1,22 @@
 $(document).ready(function() {
-    const themeSwitcher = document.getElementById('themeDropdown');
+    const body = document.body;
+    const sidebarLogo = document.getElementById('sidebar-logo');
+    const headerLogo = document.getElementById('header-logo');
 
-    const setTheme = (theme) => {
-        if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.setAttribute('data-bs-theme', 'dark')
+    const updateLogos = () => {
+        if (body.classList.contains('dark')) {
+            if(sidebarLogo) sidebarLogo.src = 'logo_dark.png';
+            if(headerLogo) headerLogo.src = 'logo_dark.png';
         } else {
-            document.documentElement.setAttribute('data-bs-theme', theme)
+            if(sidebarLogo) sidebarLogo.src = 'logo_light.png';
+            if(headerLogo) headerLogo.src = 'logo_light.png';
         }
-        localStorage.setItem('theme', theme);
     };
 
-    themeSwitcher.addEventListener('click', (e) => {
-        if (e.target.dataset.theme) {
-            setTheme(e.target.dataset.theme);
-        }
-    });
+    // Update logos on page load
+    updateLogos();
 
-    const savedTheme = localStorage.getItem('theme') || 'auto';
-    setTheme(savedTheme);
+    // Also listen for changes to the body class in case of SPA navigation
+    const observer = new MutationObserver(updateLogos);
+    observer.observe(body, { attributes: true, attributeFilter: ['class'] });
 });

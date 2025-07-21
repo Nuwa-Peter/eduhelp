@@ -1,6 +1,6 @@
 <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px; height: 100vh; position: fixed;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-        <img src="logo.png" alt="EduHelp Logo" width="32" height="32" class="me-2">
+        <img src="logo_light.png" alt="EduHelp Logo" width="32" height="32" class="me-2" id="sidebar-logo">
         <span class="fs-4">EduHelp</span>
     </a>
     <hr>
@@ -117,16 +117,5 @@
             <?php endif; ?>
         </ul>
     </div>
-    <hr>
-    <div class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle text-white" href="#" id="themeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Theme
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="themeDropdown">
-            <li><a class="dropdown-item" href="#" data-theme="light">Light</a></li>
-            <li><a class="dropdown-item" href="#" data-theme="dark">Dark</a></li>
-            <li><a class="dropdown-item" href="#" data-theme="auto">Auto</a></li>
-        </ul>
     </div>
 </div>
-<div style="margin-left: 280px;">
