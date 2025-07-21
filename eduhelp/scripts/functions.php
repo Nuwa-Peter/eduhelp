@@ -30,13 +30,13 @@ function generate_edh_id($type, $gender = null) {
     $prefix = '';
     switch ($type) {
         case 'school':
-            $prefix = 'edh';
+            $prefix = 'EDH';
             break;
         case 'teacher':
-            $prefix = 'edht' . ($gender === 'male' ? 'm' : 'f');
+            $prefix = 'EDHT' . ($gender === 'male' ? 'M' : 'F');
             break;
         case 'student':
-            $prefix = 'edhs' . ($gender === 'male' ? 'm' : 'f');
+            $prefix = 'EDHS' . ($gender === 'male' ? 'M' : 'F');
             break;
     }
 
@@ -83,5 +83,48 @@ function upload_logo($file, $edh_school_id) {
             return false;
         }
     }
+}
+
+function log_audit_trail($user_id, $action, $details = null) {
+    $conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $stmt = $conn->prepare("INSERT INTO audit_logs (user_id, action, details) VALUES (?, ?, ?)");
+    $stmt->bind_param("iss", $user_id, $action, $details);
+    $stmt->execute();
+    $stmt->close();
+    $conn->close();
+}
+
+function send_email($sent_by, $sent_to, $subject, $body) {
+    $conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $stmt = $conn->prepare("INSERT INTO email_logs (sent_by, sent_to, subject, body) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("isss", $sent_by, $sent_to, $subject, $body);
+    $stmt->execute();
+    $stmt->close();
+    $conn->close();
+
+    // In a real application, you would integrate with an email sending service here.
+    // For this mock implementation, we just log the email to the database.
+    return true;
+}
+
+function create_notification($user_id, $message) {
+    $conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $stmt = $conn->prepare("INSERT INTO notifications (user_id, message) VALUES (?, ?)");
+    $stmt->bind_param("is", $user_id, $message);
+    $stmt->execute();
+    $stmt->close();
+    $conn->close();
 }
 ?>

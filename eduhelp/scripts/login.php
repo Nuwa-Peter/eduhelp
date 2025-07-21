@@ -26,6 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['school_id'] = $user['school_id'];
             $_SESSION['role'] = $user['role'];
+
+            require_once 'functions.php';
+            log_audit_trail($user['user_id'], 'User login');
+
             header('Location: ../?page=dashboard');
             exit;
         } else {

@@ -28,7 +28,12 @@ $allowed_pages = [
     'sms',
     'settings',
     'profile',
-    'payment'
+    'payment',
+    'forgot_password',
+    'reset_password',
+    'notifications',
+    'grading_scales',
+    'grading_scale_levels'
 ];
 
 // If the requested page is not in the whitelist, show a 404 error

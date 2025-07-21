@@ -36,6 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("iisssssss", $school_id, $class_id, $edh_student_id, $lin, $name, $photo_path, $gender, $dob, $parent_contact);
 
     if ($stmt->execute()) {
+        $student_id = $stmt->insert_id;
+        log_audit_trail($_SESSION['user_id'], 'Add student', "Student ID: $student_id");
         header('Location: ../?page=students');
         exit;
     } else {

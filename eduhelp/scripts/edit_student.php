@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("ssissssis", $name, $lin, $class_id, $gender, $dob, $parent_contact, $photo_path, $student_id, $school_id);
 
     if ($stmt->execute()) {
+        log_audit_trail($_SESSION['user_id'], 'Edit student', "Student ID: $student_id");
         header('Location: ../?page=students');
         exit;
     } else {

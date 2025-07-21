@@ -65,6 +65,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Commit the transaction
         $conn->commit();
 
+        $headteacher_id = $conn->insert_id;
+        log_audit_trail($headteacher_id, 'School registration', "School ID: $school_id");
+
         // Redirect the user to the payment page
         header('Location: ../?page=payment&school_id=' . $school_id);
         exit;

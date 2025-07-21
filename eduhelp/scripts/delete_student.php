@@ -23,6 +23,7 @@ $stmt = $conn->prepare("DELETE FROM students WHERE student_id = ? AND school_id 
 $stmt->bind_param("ii", $student_id, $school_id);
 
 if ($stmt->execute()) {
+    log_audit_trail($_SESSION['user_id'], 'Delete student', "Student ID: $student_id");
     header('Location: ../?page=students');
     exit;
 } else {
