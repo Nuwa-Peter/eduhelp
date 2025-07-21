@@ -13,6 +13,14 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
+                                <label for="uneb_center_no" class="form-label">UNEB Center Number</label>
+                                <input type="text" class="form-control" id="uneb_center_no" name="uneb_center_no">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
                                 <label for="school_logo" class="form-label">School Logo</label>
                                 <input type="file" class="form-control" id="school_logo" name="school_logo">
                             </div>

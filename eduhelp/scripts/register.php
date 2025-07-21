@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $contact_email = $_POST['contact_email'];
     $contact_phone = $_POST['contact_phone'];
     $address = $_POST['address'];
+    $uneb_center_no = $_POST['uneb_center_no'];
     $headteacher_username = $_POST['headteacher_username'];
     $headteacher_email = $_POST['headteacher_email'];
     $headteacher_password = $_POST['headteacher_password'];
@@ -36,8 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         // Insert the school data into the database
-        $stmt = $conn->prepare("INSERT INTO schools (edh_id, name, contact_email, contact_phone, address) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $edh_school_id, $school_name, $contact_email, $contact_phone, $address);
+        $stmt = $conn->prepare("INSERT INTO schools (edh_id, name, contact_email, contact_phone, address, uneb_center_no) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssss", $edh_school_id, $school_name, $contact_email, $contact_phone, $address, $uneb_center_no);
         $stmt->execute();
         $school_id = $stmt->insert_id;
         $stmt->close();

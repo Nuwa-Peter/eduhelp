@@ -21,6 +21,12 @@
                             <a class="nav-link" href="?page=dashboard">Dashboard</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="?page=profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?page=notifications">Notifications</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="?page=logout">Logout</a>
                         </li>
                     <?php else: ?>
@@ -31,6 +37,16 @@
                             <a class="nav-link" href="?page=register">Register</a>
                         </li>
                     <?php endif; ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="themeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Theme
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="themeDropdown">
+                            <li><a class="dropdown-item" href="#" data-theme="light">Light</a></li>
+                            <li><a class="dropdown-item" href="#" data-theme="dark">Dark</a></li>
+                            <li><a class="dropdown-item" href="#" data-theme="auto">Auto</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>

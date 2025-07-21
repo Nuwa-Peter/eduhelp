@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 21, 2024 at 01:20 PM
+-- Generation Time: Jul 21, 2024 at 01:52 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -46,6 +46,7 @@ CREATE TABLE `audit_logs` (
 CREATE TABLE `classes` (
   `class_id` int(11) NOT NULL,
   `school_id` int(11) NOT NULL,
+  `class_level` enum('Nursery','Primary','Secondary') NOT NULL,
   `class_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -213,6 +214,7 @@ CREATE TABLE `schools` (
   `contact_email` varchar(255) NOT NULL,
   `contact_phone` varchar(20) NOT NULL,
   `address` text NOT NULL,
+  `uneb_center_no` varchar(20) DEFAULT NULL,
   `payment_status` enum('pending','paid','failed') NOT NULL DEFAULT 'pending',
   `payment_transaction_id` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -399,7 +401,8 @@ ALTER TABLE `report_cards`
 --
 ALTER TABLE `schools`
   ADD PRIMARY KEY (`school_id`),
-  ADD UNIQUE KEY `edh_id` (`edh_id`);
+  ADD UNIQUE KEY `edh_id` (`edh_id`),
+  ADD UNIQUE KEY `uneb_center_no` (`uneb_center_no`);
 
 --
 -- Indexes for table `sms_logs`
@@ -667,8 +670,8 @@ COMMIT;
 -- Dumping data for table `schools`
 --
 
-INSERT INTO `schools` (`school_id`, `edh_id`, `name`, `logo_path`, `contact_email`, `contact_phone`, `address`, `payment_status`, `payment_transaction_id`) VALUES
-(1, 'EDH00000', 'Demo School', NULL, 'demo@eduhelp.local', '1234567890', '123 Demo Street', 'paid', NULL);
+INSERT INTO `schools` (`school_id`, `edh_id`, `name`, `logo_path`, `contact_email`, `contact_phone`, `address`, `uneb_center_no`, `payment_status`, `payment_transaction_id`) VALUES
+(1, 'EDH00000', 'Demo School', NULL, 'demo@eduhelp.local', '1234567890', '123 Demo Street', 'U12345', 'paid', NULL);
 
 --
 -- Dumping data for table `users`
@@ -687,10 +690,16 @@ INSERT INTO `users` (`user_id`, `school_id`, `role`, `edh_id`, `username`, `emai
 -- Dumping data for table `classes`
 --
 
-INSERT INTO `classes` (`class_id`, `school_id`, `class_name`) VALUES
-(1, 1, 'Grade 1'),
-(2, 1, 'Grade 2'),
-(3, 1, 'Grade 3');
+INSERT INTO `classes` (`class_id`, `school_id`, `class_level`, `class_name`) VALUES
+(1, 1, 'Primary', 'P1'),
+(2, 1, 'Primary', 'P2'),
+(3, 1, 'Primary', 'P3'),
+(4, 1, 'Nursery', 'Baby Class'),
+(5, 1, 'Nursery', 'Middle Class'),
+(6, 1, 'Nursery', 'Top Class'),
+(7, 1, 'Secondary', 'S1'),
+(8, 1, 'Secondary', 'S2');
+
 
 --
 -- Dumping data for table `subjects`
