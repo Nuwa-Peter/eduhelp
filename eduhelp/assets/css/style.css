@@ -3,13 +3,6 @@
 /* General Styles */
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #f8f9fa;
-    color: #212529;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.navbar {
-    box-shadow: 0 2px 4px rgba(0,0,0,.1);
 }
 
 .card {
@@ -22,54 +15,14 @@ body {
     transform: translateY(-5px);
 }
 
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+.welcome-hero {
+    background-image: url('https://images.pexels.com/photos/207691/pexels-photo-207691.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-size: cover;
+    background-position: center;
+    color: white;
 }
 
-.btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-}
-
-/* Dark Mode Styles */
-body.dark-mode {
-    background-color: #121212;
-    color: #e0e0e0;
-}
-
-.dark-mode .navbar {
-    background-color: #1f1f1f !important;
-    box-shadow: 0 2px 4px rgba(255,255,255,.1);
-}
-
-.dark-mode .card {
-    background-color: #1f1f1f;
-    box-shadow: 0 4px 8px rgba(255,255,255,.1);
-}
-
-.dark-mode .list-group-item {
-    background-color: #1f1f1f;
-    border-color: #333;
-}
-
-.dark-mode .form-control {
-    background-color: #2b2b2b;
-    color: #e0e0e0;
-    border-color: #333;
-}
-
-.dark-mode .form-control:focus {
-    background-color: #2b2b2b;
-    color: #e0e0e0;
-    border-color: #007bff;
-    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
-}
-
-.dark-mode .table {
-    color: #e0e0e0;
-}
-
-.dark-mode .table-striped>tbody>tr:nth-of-type(odd) {
-    --bs-table-accent-bg: rgba(255,255,255,0.05);
+.welcome-hero .container-fluid {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: .3rem;
 }
